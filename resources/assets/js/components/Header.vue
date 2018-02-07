@@ -7,7 +7,7 @@
         <a class="nav-link navbar-toggler sidebar-toggler" href="#" @click="sidebarToggle">&#9776;</a>
       </li>
       <li class="nav-item px-1">
-        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="#">whjjgwuxhi</a>
       </li>
       <li class="nav-item px-1">
         <a class="nav-link" href="#">Users</a>
@@ -31,7 +31,7 @@
           <img src="static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
           <span class="hidden-md-down">admin</span>
         </span>
-        <div slot="dropdown-menu"class="dropdown-menu dropdown-menu-right">
+        <div slot="dropdown-menu" class="dropdown-menu dropdown-menu-right">
 
           <div class="dropdown-header text-center"><strong>Account</strong></div>
 

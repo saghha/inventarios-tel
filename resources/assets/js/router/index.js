@@ -8,6 +8,7 @@ import Full from '../containers/Full';
 import Dashboard from '../views/Dashboard';
 import Charts from '../views/Charts';
 import Widgets from '../views/Widgets';
+import Materiales from '../views/Materiales';
 
 // Views - Components
 import Buttons from '../views/components/Buttons';
@@ -17,6 +18,7 @@ import Forms from '../views/components/Forms';
 import Modals from '../views/components/Modals';
 import Switches from '../views/components/Switches';
 import Tables from '../views/components/Tables';
+
 
 // Views - Icons
 import FontAwesome from '../views/icons/FontAwesome';
@@ -55,6 +57,11 @@ export default new Router({
           path: 'widgets',
           name: 'Widgets',
           component: Widgets
+        },
+        {
+          path: 'materiales',
+          name: 'Materiales',
+          component: Materiales
         },
         {
           path: 'components',

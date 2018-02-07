@@ -3,7 +3,7 @@
     <AppHeader/>
     <div class="app-body">
       <Sidebar/>
-      <main class="main">
+      <main class="main" style="max-width:100%;">
         <breadcrumb :list="list"/>
         <div class="container-fluid">
           <router-view></router-view>

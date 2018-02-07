@@ -23,7 +23,9 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "vue-chartjs": "2.5.4",
+    "vue-numeric": "^2.3.0",
     "vue-router": "^2.3.1",
-    "vue-strap": "github:wffranco/vue-strap"
+    "vue-strap": "github:wffranco/vue-strap",
+    "vuejs-datepicker": "^0.9.25"
   }
 }

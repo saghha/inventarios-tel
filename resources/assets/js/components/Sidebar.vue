@@ -5,6 +5,9 @@
         <li class="nav-item">
           <router-link :to="'/dashboard'" class="nav-link"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="'/materiales'" class="nav-link"><i class="icon-speedometer"></i> Materiales</router-link>
+        </li>
         <li class="nav-title">
           UI Elements
         </li>
