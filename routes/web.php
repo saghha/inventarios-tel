@@ -11,11 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
+Route::get('/logout','Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/photos/upload', 'ImageController@imageUploadPost')->name('photos.imageUpload');
+Route::get('/material/disponibles', 'MaterialController@todo');
+Route::get('/prestamo/disponibles', 'PrestamoController@onlyAvaibles');
 Route::resource('/materiales', 'MaterialController');
+Route::resource('/personas', 'PersonaController');
+Route::resource('/prestamo', 'PrestamoController');
+Route::post('/excel/upload', 'ExcelUploadController@ExcelUploadPost');
+

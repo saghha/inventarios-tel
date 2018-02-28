@@ -18,7 +18,7 @@ class CreatePivotPrestamoMaterialTable extends Migration
             $table->unsignedInteger('id_material');
             $table->unsignedInteger('cantidad');
             $table->string('sku')->nullable();
-            $table->unique(['id_prestamo','id_material','sku']);
+            $table->unique(['id_prestamo','id_material']);
             $table->softDeletes();
             $table->timestamps();
         });

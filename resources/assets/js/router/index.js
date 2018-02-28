@@ -9,6 +9,11 @@ import Dashboard from '../views/Dashboard';
 import Charts from '../views/Charts';
 import Widgets from '../views/Widgets';
 import Materiales from '../views/Materiales';
+import NuevoPrestamo from '../views/NuevoPrestamo';
+import PrestamosVigentes from '../views/PrestamosVigentes';
+import Personas from '../views/Personas';
+import Test from '../views/Test';
+import MaterialesDisponibles from '../views/MaterialesDisponibles';
 
 // Views - Components
 import Buttons from '../views/components/Buttons';
@@ -18,6 +23,7 @@ import Forms from '../views/components/Forms';
 import Modals from '../views/components/Modals';
 import Switches from '../views/components/Switches';
 import Tables from '../views/components/Tables';
+//import GoodTables from '../views/components/GoodTables'
 
 
 // Views - Icons
@@ -61,7 +67,50 @@ export default new Router({
         {
           path: 'materiales',
           name: 'Materiales',
-          component: Materiales
+          component: {
+            render (c) { return c('router-view'); }
+          },
+          children:[
+            {
+              path: 'disponibles',
+              name: 'MaterialesDisponibles',
+              component: MaterialesDisponibles
+            },
+            {
+              path: '',
+              name: 'Materiales',
+              component: Materiales
+            }
+          ]
+        },
+        {
+          path: 'persona',
+          name: 'Personas',
+          component: Personas
+        },
+        {
+          path: 'test',
+          name: 'Test',
+          component: Test
+        },
+        {
+          path: 'prestamos',
+          name: 'Prestamos',
+          component: {
+            render (c) { return c('router-view'); }
+          },
+          children:[
+            {
+              path: 'nuevoprestamo',
+              name: 'NuevoPrestamo',
+              component: NuevoPrestamo
+            },
+            {
+              path: 'vigentes',
+              name: 'PrestamosVigentes',
+              component: PrestamosVigentes
+            }
+          ]
         },
         {
           path: 'components',

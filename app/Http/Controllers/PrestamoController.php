@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 
-class MaterialController extends Controller
+class PrestamoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,34 +14,42 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materiales = \App\Material::paginate(10);
-        return response()->json($materiales);
-    }
-    public function todo(Request $request){
-        $materiales = \App\Material::all();
         $prestamos = \App\Prestamo::all();
-        $materiales_prestados = array();
-        $materiales_respuesta = array();
+        //$retorno['prestamos'] = $prestamos;
         foreach($prestamos as $prestamo){
-            if($prestamo['fecha_devolucion'] == null){
-                $materiales_prestados = $prestamo->getMateriales;
-                foreach($materiales_prestados as $value){
-                    foreach($materiales as $material){
-                        if($material['id'] == $value['id']){
-                            $material['cantidad'] -= $value->pivot['cantidad'];
-                        }
-                    }
-                }
-            } 
+            $materiales = $prestamo->getMateriales;
+            $persona = \App\Persona::findOrFail($prestamo['id_persona']);
+            $prestamo['nombre_persona'] = $persona['nombre'];
+            $prestamo['apellido_p'] = $persona['apellido_p'];
+            $prestamo['apellido_m'] = $persona['apellido_m'];
+
+            // foreach($materiales as $material){
+            //     if(!isset($retorno[$prestamo['id']])){
+            //         $retorno[$prestamo['id']] = [$material];
+            //     }
+            //     else{
+            //         array_push($retorno[$prestamo['id']],$material);
+            //     }
+            // }
         }
-        foreach($materiales as $material){
-            if($material['cantidad'] > 0){
-                array_push($materiales_respuesta, $material);
-            }
-        }
-        return response()->json($materiales_respuesta);
+        return response()->json($prestamos);
     }
 
+    public function onlyAvaibles(){
+        $prestamos = \App\Prestamo::all();
+        $retorno = array();
+        foreach($prestamos as $prestamo){
+            $materiales = $prestamo->getMateriales;
+            if($prestamo['fecha_devolucion'] == null){
+                $persona = \App\Persona::findOrFail($prestamo['id_persona']);
+                $prestamo['nombre_persona'] = $persona['nombre'];
+                $prestamo['apellido_p'] = $persona['apellido_p'];
+                $prestamo['apellido_m'] = $persona['apellido_m'];
+                array_push($retorno, $prestamo);  
+            }
+        }
+        return response()->json($retorno);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -61,7 +69,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $input = json_decode($request->getContent(), true);
-        $validator = Validator::make($input, \App\Material::$rules);
+        $validator = Validator::make($input, \App\Prestamo::$rules);
         if($validator->fails()){
             return response()->json([
                 'result' =>[
@@ -71,15 +79,15 @@ class MaterialController extends Controller
                 ]
             ]);
         }
-        $material = \App\Material::create([
-            'nombre' => $input['nombre'],
-            'descripcion' => $input['descripcion'],
-            'imagen' => $input['imagen'],
-            'cantidad' => $input['cantidad'],
-            'ubicacion' => $input['ubicacion'],
-            'observaciones' => $input['observaciones'],
-            'sku' => $input['sku']
+        $prestamo = \App\Prestamo::create([
+            'id_persona' => $input['id_persona'],
+            'fecha_prestamo' => $input['fecha_prestamo'],
+            'fecha_esperada_devolucion' => $input['fecha_esperada_devolucion'],
+            'comentarios' => $input['comentarios']
         ]);
+        foreach($input['materiales'] as $material){
+            $prestamo->getMateriales()->attach($material['id'],['sku'=> $material['sku'], 'cantidad' => $material['cantidad']]);
+        }
         return response()->json([
             'result' =>[
                 'type' => 'Success',
@@ -120,7 +128,7 @@ class MaterialController extends Controller
     public function update(Request $request, $id)
     {
         $input = json_decode($request->getContent(), true);
-        $validator = Validator::make($input, \App\Material::$rules);
+        $validator = Validator::make($input, \App\Prestamo::$rules);
         if($validator->fails()){
             return response()->json([
                 'result' =>[
@@ -130,15 +138,13 @@ class MaterialController extends Controller
                 ]
             ]);
         }
-        $material = \App\Material::findOrFail($id);
-        $material->nombre = $input['nombre'];
-        $material->descripcion = $input['descripcion'];
-        $material->imagen = $input['imagen'];
-        $material->cantidad = $input['cantidad'];
-        $material->ubicacion = $input['ubicacion'];
-        $material->observaciones = $input['observaciones'];
-        $material->sku = $input['sku'];
-        $material->save();
+        $prestamo = \App\Prestamo::findOrFail($id);
+        $prestamo->id_persona = $input['id_persona'];
+        $prestamo->fecha_prestamo = $input['fecha_prestamo'];
+        $prestamo->fecha_esperada_devolucion = $input['fecha_esperada_devolucion'];
+        $prestamo->fecha_devolucion = $input['fecha_devolucion'];
+        $prestamo->comentarios = $input['comentarios'];
+        $prestamo->save();
         return response()->json([
             'result' =>[
                 'type' => 'Success',

@@ -19,11 +19,15 @@ require('./bootstrap');
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import VeeValidate from 'vee-validate';
+import { rutInputDirective } from 'vue-dni';
 
 Vue.component('App', require('./App.vue'));
+Vue.use(VeeValidate);
+Vue.directive('rut', rutInputDirective);
 
 /* eslint-disable no-new */
-const app = new Vue({
+window.app = new Vue({
     el: '#app',
     router,
     template: '<App/>',

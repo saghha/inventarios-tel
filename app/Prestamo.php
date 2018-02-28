@@ -62,6 +62,6 @@ class Prestamo extends Model
     	return $this->belongsTo('App\Persona','id_persona','id');
     }
     public function getMateriales(){
-    	return $this->belongsToMany('App\Material','prestamo_material','id_material','id_prestamo')->withPivot('sku','cantidad');
+    	return $this->belongsToMany('App\Material','prestamo_material','id_prestamo','id_material')->withPivot('sku','cantidad');
     }
 }

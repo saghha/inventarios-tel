@@ -6,7 +6,34 @@
           <router-link :to="'/dashboard'" class="nav-link"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="'/materiales'" class="nav-link"><i class="icon-speedometer"></i> Materiales</router-link>
+          <router-link :to="'/persona'" class="nav-link"><i class="icon-speedometer"></i> Personas</router-link>
+        </li>
+        
+        <li class="nav-item">
+          <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/materiales'}" disabled>
+            <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i> Materiales</div>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <router-link :to="'/materiales'" class="nav-link" exact><i class="fa fa-book"></i> Todos los materiales</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="'/materiales/disponibles'" class="nav-link" exact><i class="fa fa-book"></i> Disponibles</router-link>
+              </li>
+            </ul>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/prestamos'}" disabled>
+            <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i> Prestamos</div>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <router-link :to="'/prestamos/nuevoprestamo'" class="nav-link" exact><i class="fa fa-book"></i> Nuevo prestamo</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="'/prestamos/vigentes'" class="nav-link" exact><i class="fa fa-book"></i> Ver prestamos</router-link>
+              </li>
+            </ul>
+          </router-link>
         </li>
         <li class="nav-title">
           UI Elements

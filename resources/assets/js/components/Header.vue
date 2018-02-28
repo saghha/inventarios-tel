@@ -47,8 +47,8 @@
           <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-default">42</span></a>
           <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
           <div class="divider"></div>
-          <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
-          <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+          <a class="dropdown-item" href="/"><i class="fa fa-shield"></i> Lock Account</a>
+          <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Logout</a>
         </div>
       </dropdown>
       <li class="nav-item hidden-md-down">
@@ -59,8 +59,9 @@
 </template>
 <script>
 
-import navbar from './Navbar'
-import { dropdown } from 'vue-strap'
+import navbar from './Navbar';
+import axios from 'axios';
+import { dropdown } from 'vue-strap';
 
 export default {
   name: 'header',
@@ -83,6 +84,10 @@ export default {
     asideToggle (e) {
       e.preventDefault()
       document.body.classList.toggle('aside-menu-hidden')
+    },
+    logout: function(){
+      axios.post("/logout").then((response)=> {
+      });
     }
   }
 }

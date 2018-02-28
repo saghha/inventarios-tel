@@ -4555,6 +4555,7 @@ mark,
   padding: 0.25rem;
   background-color: #e4e5e6;
   border: 1px solid #ddd;
+  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   max-width: 100%;
   height: auto;
@@ -6589,6 +6590,7 @@ pre code {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0;
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
@@ -6978,6 +6980,7 @@ select.form-control-lg:not([size]):not([multiple]),
   border: 1px solid transparent;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
+  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
@@ -7467,6 +7470,7 @@ input[type="button"].btn-block {
 
 .fade {
   opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
 }
 
@@ -7494,6 +7498,7 @@ tbody.collapse.show {
   position: relative;
   height: 0;
   overflow: hidden;
+  -webkit-transition: height 0.35s ease;
   transition: height 0.35s ease;
 }
 
@@ -9015,8 +9020,10 @@ header.navbar .dropdown-item {
 @media (min-width: 576px) {
   .card-columns {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3;
     -webkit-column-gap: 1.25rem;
+       -moz-column-gap: 1.25rem;
             column-gap: 1.25rem;
   }
 
@@ -9311,6 +9318,7 @@ header.navbar .dropdown-item {
 .card-header .card-actions a i,
 .card-header .card-actions button i {
   display: inline-block;
+  -webkit-transition: .4s;
   transition: .4s;
 }
 
@@ -9343,6 +9351,7 @@ header.navbar .dropdown-item {
 
 @media (min-width: 576px) {
   .card-columns.cols-2 {
+    -moz-column-count: 2;
     -webkit-column-count: 2;
     column-count: 2;
   }
@@ -9702,6 +9711,7 @@ a.badge:hover {
 }
 
 .progress-bar-striped {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 1rem 1rem;
 }
@@ -10057,6 +10067,7 @@ button.close {
 }
 
 .modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform 0.3s ease-out;
   transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
@@ -10551,6 +10562,7 @@ button.close {
 
 @media (-webkit-transform-3d) {
   .carousel-item {
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
     transition: -webkit-transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
@@ -10563,6 +10575,7 @@ button.close {
 
 @supports ((-webkit-transform: translate3d(0, 0, 0)) or (transform: translate3d(0, 0, 0))) {
   .carousel-item {
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
     transition: -webkit-transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
@@ -14697,7 +14710,9 @@ app-root {
 .sidebar,
 .main,
 .aside-menu {
-  transition-duration: 0.25s, 0.25s;
+  -webkit-transition-duration: 0.25s, 0.25s;
+          transition-duration: 0.25s, 0.25s;
+  -webkit-transition-property: margin-left, margin-right;
   transition-property: margin-left, margin-right;
 }
 
@@ -14849,6 +14864,7 @@ app-root {
 .sidebar .nav .nav-item {
   position: relative;
   margin: 0;
+  -webkit-transition: background .3s ease-in-out;
   transition: background .3s ease-in-out;
 }
 
@@ -14857,6 +14873,7 @@ app-root {
   padding: 0;
   margin: 0;
   overflow-y: hidden;
+  -webkit-transition: max-height .3s ease-in-out;
   transition: max-height .3s ease-in-out;
 }
 
@@ -14943,6 +14960,7 @@ app-root {
   line-height: 0.65625rem;
   text-align: center;
   content: "\2039";
+  -webkit-transition: .3s;
   transition: .3s;
 }
 
@@ -14974,17 +14992,20 @@ app-root {
 }
 
 .sidebar .nav .nav-item.nav-dropdown.nt {
+  -webkit-transition: 0s !important;
   transition: 0s !important;
 }
 
 .sidebar .nav .nav-item.nav-dropdown.nt > ul,
 .sidebar .nav .nav-item.nav-dropdown.nt > ol {
+  -webkit-transition: 0s !important;
   transition: 0s !important;
 }
 
 .sidebar .nav .nav-item.nav-dropdown.nt a.nav-link.nav-dropdown-toggle::before,
 .sidebar .nav .nav-item.nav-dropdown.nt .navbar a.nav-dropdown-toggle.dropdown-toggle::before,
 .navbar .sidebar .nav .nav-item.nav-dropdown.nt a.nav-dropdown-toggle.dropdown-toggle::before {
+  -webkit-transition: 0s !important;
   transition: 0s !important;
 }
 
@@ -15135,6 +15156,7 @@ app-root {
     width: 250px;
     overflow: visible;
     background: #20a8d8;
+    -webkit-transition: 0s;
     transition: 0s;
   }
 
@@ -15148,6 +15170,7 @@ app-root {
   body.sidebar-compact .sidebar ul.nav li.nav-item:hover > ol {
     display: inline;
     max-height: 10000px;
+    -webkit-transition: 0s;
     transition: 0s;
   }
 
@@ -15363,6 +15386,7 @@ nav.top-nav ul.nav li.nav-item:hover > ul {
 #loading-bar-spinner {
   -webkit-pointer-events: none;
   pointer-events: none;
+  -webkit-transition: 350ms linear all;
   transition: 350ms linear all;
 }
 
@@ -15390,6 +15414,7 @@ nav.top-nav ul.nav li.nav-item:hover > ul {
   background: #20a8d8;
   border-top-right-radius: 1px;
   border-bottom-right-radius: 1px;
+  -webkit-transition: width 350ms;
   transition: width 350ms;
 }
 
@@ -17035,7 +17060,9 @@ hr.transparent {
 
 .avatars-stack .avatar {
   margin-right: -15px;
-  transition-duration: 0.25s, 0.25s;
+  -webkit-transition-duration: 0.25s, 0.25s;
+          transition-duration: 0.25s, 0.25s;
+  -webkit-transition-property: margin-left, margin-right;
   transition-property: margin-left, margin-right;
 }
 
@@ -17156,7 +17183,9 @@ hr.transparent {
   background-color: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 2px;
+  -webkit-transition: .15s ease-out;
   transition: .15s ease-out;
+  -webkit-transition-property: opacity background;
   transition-property: opacity background;
 }
 
@@ -17177,6 +17206,7 @@ hr.transparent {
   background: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 1px;
+  -webkit-transition: left .15s ease-out;
   transition: left .15s ease-out;
 }
 
@@ -17265,7 +17295,9 @@ hr.transparent {
   background-color: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 2px;
+  -webkit-transition: .15s ease-out;
   transition: .15s ease-out;
+  -webkit-transition-property: opacity background;
   transition-property: opacity background;
 }
 
@@ -17277,6 +17309,7 @@ hr.transparent {
   margin-top: -.5em;
   line-height: 1;
   text-align: center;
+  -webkit-transition: inherit;
   transition: inherit;
 }
 
@@ -17310,6 +17343,7 @@ hr.transparent {
   background: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 1px;
+  -webkit-transition: left .15s ease-out;
   transition: left .15s ease-out;
 }
 
@@ -17399,7 +17433,9 @@ hr.transparent {
   background-color: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 2px;
+  -webkit-transition: .15s ease-out;
   transition: .15s ease-out;
+  -webkit-transition-property: opacity background;
   transition-property: opacity background;
 }
 
@@ -17411,6 +17447,7 @@ hr.transparent {
   margin-top: -.5em;
   line-height: 1;
   text-align: center;
+  -webkit-transition: inherit;
   transition: inherit;
 }
 
@@ -17444,6 +17481,7 @@ hr.transparent {
   background: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 1px;
+  -webkit-transition: left .15s ease-out;
   transition: left .15s ease-out;
 }
 
@@ -17532,7 +17570,9 @@ hr.transparent {
   background-color: #eceff1;
   border: 1px solid #cfd8dc;
   border-radius: 2px;
+  -webkit-transition: .15s ease-out;
   transition: .15s ease-out;
+  -webkit-transition-property: opacity background;
   transition-property: opacity background;
 }
 
@@ -17553,6 +17593,7 @@ hr.transparent {
   background: #fff;
   border: 1px solid #cfd8dc;
   border-radius: 1px;
+  -webkit-transition: left .15s ease-out;
   transition: left .15s ease-out;
   border: 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);

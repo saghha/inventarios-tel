@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 
-class MaterialController extends Controller
+class PersonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,32 +14,8 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materiales = \App\Material::paginate(10);
-        return response()->json($materiales);
-    }
-    public function todo(Request $request){
-        $materiales = \App\Material::all();
-        $prestamos = \App\Prestamo::all();
-        $materiales_prestados = array();
-        $materiales_respuesta = array();
-        foreach($prestamos as $prestamo){
-            if($prestamo['fecha_devolucion'] == null){
-                $materiales_prestados = $prestamo->getMateriales;
-                foreach($materiales_prestados as $value){
-                    foreach($materiales as $material){
-                        if($material['id'] == $value['id']){
-                            $material['cantidad'] -= $value->pivot['cantidad'];
-                        }
-                    }
-                }
-            } 
-        }
-        foreach($materiales as $material){
-            if($material['cantidad'] > 0){
-                array_push($materiales_respuesta, $material);
-            }
-        }
-        return response()->json($materiales_respuesta);
+        $personas = \App\Persona::all();
+        return response()->json($personas);
     }
 
     /**
@@ -61,7 +37,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $input = json_decode($request->getContent(), true);
-        $validator = Validator::make($input, \App\Material::$rules);
+        $validator = Validator::make($input, \App\Persona::$rules);
         if($validator->fails()){
             return response()->json([
                 'result' =>[
@@ -71,14 +47,12 @@ class MaterialController extends Controller
                 ]
             ]);
         }
-        $material = \App\Material::create([
+        $material = \App\Persona::create([
             'nombre' => $input['nombre'],
-            'descripcion' => $input['descripcion'],
-            'imagen' => $input['imagen'],
-            'cantidad' => $input['cantidad'],
-            'ubicacion' => $input['ubicacion'],
-            'observaciones' => $input['observaciones'],
-            'sku' => $input['sku']
+            'apellido_p' => $input['apellido_p'],
+            'apellido_m' => $input['apellido_m'],
+            'rol' => $input['rol'],
+            'rut' => $input['rut'],
         ]);
         return response()->json([
             'result' =>[
@@ -120,7 +94,7 @@ class MaterialController extends Controller
     public function update(Request $request, $id)
     {
         $input = json_decode($request->getContent(), true);
-        $validator = Validator::make($input, \App\Material::$rules);
+        $validator = Validator::make($input, \App\Persona::$rules);
         if($validator->fails()){
             return response()->json([
                 'result' =>[
@@ -130,15 +104,13 @@ class MaterialController extends Controller
                 ]
             ]);
         }
-        $material = \App\Material::findOrFail($id);
-        $material->nombre = $input['nombre'];
-        $material->descripcion = $input['descripcion'];
-        $material->imagen = $input['imagen'];
-        $material->cantidad = $input['cantidad'];
-        $material->ubicacion = $input['ubicacion'];
-        $material->observaciones = $input['observaciones'];
-        $material->sku = $input['sku'];
-        $material->save();
+        $persona = \App\Persona::findOrFail($id);
+        $persona->nombre = $input['nombre'];
+        $persona->apellido_p = $input['apellido_p'];
+        $persona->apellido_m = $input['apellido_m'];
+        $persona->rut = $input['rut'];
+        $persona->rol = $input['rol'];
+        $persona->save();
         return response()->json([
             'result' =>[
                 'type' => 'Success',
@@ -155,7 +127,7 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        $material = \App\Material::find($id);
+        $material = \App\Persona::find($id);
         $material->delete();
         return response()->json([
             'result' =>[
