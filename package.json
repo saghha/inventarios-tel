@@ -33,6 +33,7 @@
     "vue-paginate": "^3.5.1",
     "vue-pagination-2": "^1.3.1",
     "vue-router": "^2.3.1",
+    "vue-select": "^2.4.0",
     "vue-strap": "github:wffranco/vue-strap",
     "vue-tables-2": "^1.3.41",
     "vue2-typeahead": "^1.0.20",

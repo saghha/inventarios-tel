@@ -17,10 +17,17 @@
 
 Auth::routes();
 Route::get('/logout','Auth\LoginController@logout');
-
+Route::get('/search', 'HomeController@searchMethod');
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/photos/upload', 'ImageController@imageUploadPost')->name('photos.imageUpload');
 Route::get('/material/disponibles', 'MaterialController@todo');
+Route::get('/prestados/{id}', 'MaterialController@getMatPrestadosxAlumno');
+Route::get('/persona/count', 'PersonaController@countPerson');
+Route:: get('/persona/all', 'PersonaController@selectPersona');
+Route::get('/material/prestados', 'MaterialController@getMaterialesPrestados');
+Route::get('user/name', 'DashboardController@get_username');
+Route::get('/material/mostrequired', 'MaterialController@mostRequired');
+Route::get('material/countprestados', 'MaterialController@countMaterialesPrestados');
 Route::get('/prestamo/disponibles', 'PrestamoController@onlyAvaibles');
 Route::resource('/materiales', 'MaterialController');
 Route::resource('/personas', 'PersonaController');

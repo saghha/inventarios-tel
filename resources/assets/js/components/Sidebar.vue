@@ -3,7 +3,7 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <router-link :to="'/dashboard'" class="nav-link"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></router-link>
+          <router-link :to="'/dashboard'" class="nav-link"><i class="icon-speedometer"></i> Dashboard</router-link>
         </li>
         <li class="nav-item">
           <router-link :to="'/persona'" class="nav-link"><i class="icon-speedometer"></i> Personas</router-link>
@@ -18,6 +18,9 @@
               </li>
               <li class="nav-item">
                 <router-link :to="'/materiales/disponibles'" class="nav-link" exact><i class="fa fa-book"></i> Disponibles</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="'/materiales/prestados'" class="nav-link" exact><i class="fa fa-book"></i> Prestados</router-link>
               </li>
             </ul>
           </router-link>
@@ -35,7 +38,7 @@
             </ul>
           </router-link>
         </li>
-        <li class="nav-title">
+        <!-- <li class="nav-title">
           UI Elements
         </li>
         <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/components'}" disabled>
@@ -81,8 +84,8 @@
         <li class="nav-item">
           <router-link :to="'/charts'" class="nav-link" exact><i class="icon-pie-chart"></i> Charts</router-link>
         </li>
-        <li class="divider"></li>
-        <li class="nav-title">
+        <li class="divider"></li> -->
+        <!-- <li class="nav-title">
           Extras
         </li>
         <li class="nav-item nav-dropdown">
@@ -100,8 +103,8 @@
             <li class="nav-item">
               <router-link :to="'/pages/500'" class="nav-link" exact><i class="icon-star"></i> Error 500</router-link>
             </li>
-          </ul>
-        </li>
+          </ul> 
+        </li>-->
       </ul>
     </nav>
   </div>

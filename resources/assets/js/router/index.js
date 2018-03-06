@@ -14,6 +14,8 @@ import PrestamosVigentes from '../views/PrestamosVigentes';
 import Personas from '../views/Personas';
 import Test from '../views/Test';
 import MaterialesDisponibles from '../views/MaterialesDisponibles';
+import MaterialesPrestados from '../views/MaterialesPrestados';
+import Profile from '../views/Profile';
 
 // Views - Components
 import Buttons from '../views/components/Buttons';
@@ -60,6 +62,11 @@ export default new Router({
           component: Charts
         },
         {
+          path: 'profile',
+          name: 'Profile',
+          component: Profile
+        },
+        {
           path: 'widgets',
           name: 'Widgets',
           component: Widgets
@@ -80,6 +87,11 @@ export default new Router({
               path: '',
               name: 'Materiales',
               component: Materiales
+            },
+            {
+              path: 'prestados',
+              name: 'MaterialesPrestados',
+              component: MaterialesPrestados
             }
           ]
         },

@@ -20,4 +20,7 @@ class DashboardController extends Controller
         $api_token = Auth::user()->api_token;
         return response()->json(['api_token' => $api_token]);
     }
+    public function get_username(){
+        return Auth::user()->name;
+    }
 }

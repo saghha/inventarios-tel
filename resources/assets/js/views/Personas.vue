@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-header">
       <div class="pull-left">
-      <i class=""></i> Lista de alumnos
+      <i class=""></i> <strong>Lista de alumnos</strong>
       </div>
       <div class="pull-right">
         <button type="button" class="btn btn-sm btn-success" @click="largeModal = true; action='create'; reset()"><i class="fa fa-plus"></i> Agregar</button>
@@ -81,7 +81,7 @@
               <div class="form-group row">
                 <label class="col-md-3 form-control-label" for="rut" :class="{'has-error': errors.has('rut') }">Rut</label>
                 <div class="col-md-9">
-                  <input type="text" id="rut-input" v-validate.initial="'required'" v-rut:live @keyup="formato_rut()" name="rut" class="form-control" :class="{'input': true, 'is-danger': errors.has('rut') }" placeholder="Text" v-model="newPersona.rut">
+                  <input type="text" id="rut-input" v-validate.initial="'required'" v-rut:live name="rut" class="form-control" :class="{'input': true, 'is-danger': errors.has('rut') }" placeholder="Text" v-model="newPersona.rut">
                   <p class="text-danger" v-if="errors.has('rut')">{{ errors.first('rut') }}</p>
                 </div>
               </div>

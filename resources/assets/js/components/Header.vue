@@ -7,17 +7,17 @@
         <a class="nav-link navbar-toggler sidebar-toggler" href="#" @click="sidebarToggle">&#9776;</a>
       </li>
       <li class="nav-item px-1">
-        <a class="nav-link" href="#">whjjgwuxhi</a>
+        <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item px-1">
-        <a class="nav-link" href="#">Users</a>
+        <a class="nav-link" href="#/materiales">Materiales</a>
       </li>
       <li class="nav-item px-1">
-        <a class="nav-link" href="#">Settings</a>
+        <a class="nav-link" href="#/prestamos/vigentes">Prestamos</a>
       </li>
     </ul>
-    <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item hidden-md-down">
+    <ul class="nav navbar-nav ml-auto" style="padding-right:20px;">
+      <!-- <li class="nav-item hidden-md-down">
         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
       </li>
       <li class="nav-item hidden-md-down">
@@ -25,35 +25,23 @@
       </li>
       <li class="nav-item hidden-md-down">
         <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-      </li>
+      </li> -->
       <dropdown size="nav" class="nav-item">
         <span slot="button">
-          <img src="static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-          <span class="hidden-md-down">admin</span>
+          <img src="images/avatar.png" class="img-avatar" alt="admin@bootstrapmaster.com">
+          <span class="hidden-md-down">{{userName}}</span>
         </span>
         <div slot="dropdown-menu" class="dropdown-menu dropdown-menu-right">
 
-          <div class="dropdown-header text-center"><strong>Account</strong></div>
-
-          <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
-          <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
-          <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
-          <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>
-
           <div class="dropdown-header text-center"><strong>Settings</strong></div>
 
-          <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-          <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
-          <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-default">42</span></a>
-          <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
-          <div class="divider"></div>
-          <a class="dropdown-item" href="/"><i class="fa fa-shield"></i> Lock Account</a>
+          <a class="dropdown-item" ><i class="fa fa-user"></i> Profile</a>
           <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Logout</a>
         </div>
       </dropdown>
-      <li class="nav-item hidden-md-down">
+      <!-- <li class="nav-item hidden-md-down">
         <a class="nav-link navbar-toggler aside-menu-toggler" href="#" @click="asideToggle">&#9776;</a>
-      </li>
+      </li> -->
     </ul>
   </navbar>
 </template>
@@ -68,6 +56,14 @@ export default {
   components: {
     navbar,
     dropdown
+  },
+  data(){
+    return{
+      userName: '',
+    }
+  },
+  created(){
+    this.getUserName();
   },
   methods: {
     click () {
@@ -84,6 +80,11 @@ export default {
     asideToggle (e) {
       e.preventDefault()
       document.body.classList.toggle('aside-menu-hidden')
+    },
+    getUserName: function(){
+      axios.get('/user/name').then((response) => {
+        this.userName = response.data;
+      });
     },
     logout: function(){
       axios.post("/logout").then((response)=> {

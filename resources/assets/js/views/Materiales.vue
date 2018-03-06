@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">
         <div class="pull-left">
-        <i class=""></i> Lista de materiales
+        <i class=""></i> <strong>Lista de materiales</strong>
         </div>
         <div class="pull-right">
           <button type="button" class="btn btn-sm btn-success" @click="largeModal = true; action='create'"><i class="fa fa-plus"></i> Agregar</button>
@@ -11,7 +11,6 @@
         <div class="pull-left">
           <input type="text" placeholder="buscar" @keyup="someMethod(materiales.data)" v-model="name" class="form-control">
         </div>
-        
       </div>
       <div class="card-block">
         <div class="table-responsive">
@@ -84,7 +83,7 @@
                 </div>
               </div>
                 <div class="form-group row">
-                  <label class="col-md-3 form-control-label" for="file-input">File input</label>
+                  <label class="col-md-3 form-control-label" for="file-input">Imagen</label>
                   <div class="col-md-9">
                     <input type="file" id="file-input" :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); " accept="image/*" class="input-file">
                   </div>
@@ -100,6 +99,12 @@
         <h4 class="modal-title">Confirmar eliminación</h4>
       </div>
       ¿Desea eliminar el material?
+    </modal>
+    <modal title="Modal title" class="modal-danger" v-model="dangerModal" @ok="dangerModal = false" effect="fade/zoom">
+      <div slot="modal-header" class="modal-header">
+        <h4 class="modal-title">Información de eliminación</h4>
+      </div>
+      {{response.result.message}}
     </modal>
   </div><!--/.col-->
 </template>
@@ -143,17 +148,23 @@ export default {
       uploadError: null,
       currentStatus: null,
       warningModal: false,
+      dangerModal: false,
       uploadFieldName: 'photo',
       response_add: '',
       search: false,
       name: '',
       materiales_filtrados: [],
       action: 'create',
+      response: {
+        result:{
+          message: "",
+          type: ""
+        }
+      },
     };
   },
   created(){
     this.fetchItems(1);
-    console.log("monte la wea");
   },
   
   computed: {
@@ -202,7 +213,6 @@ export default {
         }
       })
     },
-
     fetchItems: function(page){
       axios.get('/materiales?page='+page).then((response)=> {
         this.materiales = response.data;
@@ -232,13 +242,19 @@ export default {
     },
     deleteMaterial: function(index){
       axios.delete('/materiales/'+this.newMaterial.id).then((response) => {
-        this.response_add = response.data;
+        this.response = response.data;
+        if(this.response.result.type == 'Error'){
+          this.dangerModal = true;
+        }
         this.fetchItems();
       });
     },
     updateMaterial: function(){
       axios.put('materiales/'+this.newMaterial.id,this.newMaterial).then((response) =>{
-        this.response_add = response.data;
+        this.response = response.data;
+        if(this.response.result.type == 'Error'){
+          this.dangerModal = true;
+        }
         this.fetchItems();
       });
       this.reset();

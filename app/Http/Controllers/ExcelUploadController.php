@@ -7,6 +7,11 @@ use Excel;
 
 class ExcelUploadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function ExcelUploadPost(Request $request){
         $this->validate($request, [
             'excel' => 'required|mimes:xls,xlsx,csv'

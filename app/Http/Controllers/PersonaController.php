@@ -12,12 +12,23 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
+    
     public function index()
     {
         $personas = \App\Persona::all();
         return response()->json($personas);
     }
-
+    public function selectPersona(){
+        $personas = \App\Persona::all();
+        foreach($personas as $persona){
+            $persona['nombre_completo'] = $persona['nombre']." ".$persona['apellido_p']." ".$persona['apellido_m'];
+        }
+        return response()->json($personas);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -34,6 +45,13 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function countPerson(){
+        $personas = \App\Persona::all();
+        return response()->json([
+            'alumnos' => $personas->count()
+        ]);
+
+    }
     public function store(Request $request)
     {
         $input = json_decode($request->getContent(), true);

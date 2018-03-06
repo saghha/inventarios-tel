@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-header">
       <div class="pull-left">
-      <i class=""></i> Prestamos Vigentes
+      <i class=""></i><strong> Prestamos Vigentes</strong>
       </div>
       <div class="pull-right">
         <input type="text" placeholder="buscar" @keyup="someMethod(tabla)" v-model="name" class="form-control">
@@ -23,7 +23,7 @@
           </thead>
           <tbody>
             <tr v-for="(prestamo, index) in someMethod(tabla)" :key="index">
-              <td>{{prestamo.nombre_persona}}</td>
+              <td>{{prestamo.nombre_persona}} {{prestamo.apellido_p}} {{prestamo.apellido_m}}</td>
               <td class="text-center">{{prestamo.fecha_prestamo.substr(0,10)}}</td>
               <td class="text-center">{{prestamo.fecha_esperada_devolucion.substr(0,10)}}</td>
               <td class="text-center">{{prestamo.comentarios}}</td>
@@ -80,25 +80,27 @@
         <div class="form-group row">
           <div class="row col-md-12">
             <div class="col-md-12">
-                <div class="card">
-                  <div class="card-block">
-                      <table class="table table-bordered table-striped table-condensed">
+              <div class="card">
+                <div class="card-block">
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-condensed">
                       <thead>
-                          <tr>
-                          <th>Nombre</th>
-                          <th>Cantidad</th>
-                          <th>Descripción</th>
-                          </tr>
+                        <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Descripción</th>
+                        </tr>
                       </thead>
                       <tbody>
-                          <tr v-for="(material, index) in materiales" :key="index" >
-                          <td>{{ material.nombre }}</td>
-                          <td>{{ material.pivot.cantidad }}</td>
-                          <td>{{ material.descripcion }}</td>
-                          </tr>
+                        <tr v-for="(material, index) in materiales" :key="index" >
+                        <td>{{ material.nombre }}</td>
+                        <td>{{ material.pivot.cantidad }}</td>
+                        <td>{{ material.descripcion }}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
+                </div>
               </div>
             </div>
           </div><!--/.col-->
@@ -179,7 +181,6 @@ export default {
       this.tabla = [];
       let i = 0;
       for(i = ((page-1)*this.perpage); i<(page*this.perpage); i++){
-        console.log(this.prestamos.length)
         if(i < this.prestamos.length){
           this.tabla.push(this.prestamos[i]);
         }
