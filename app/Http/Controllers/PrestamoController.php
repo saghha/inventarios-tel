@@ -55,6 +55,22 @@ class PrestamoController extends Controller
         }
         return response()->json($retorno);
     }
+
+    public function onlyClosed(){
+        $prestamos = \App\Prestamo::all();
+        $retorno = array();
+        foreach($prestamos as $prestamo){
+            $materiales = $prestamo->getMateriales;
+            if($prestamo['fecha_devolucion'] != null){
+                $persona = \App\Persona::findOrFail($prestamo['id_persona']);
+                $prestamo['nombre_persona'] = $persona['nombre'];
+                $prestamo['apellido_p'] = $persona['apellido_p'];
+                $prestamo['apellido_m'] = $persona['apellido_m'];
+                array_push($retorno, $prestamo);
+            }
+        }
+        return response()->json($retorno);
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/photos/upload', 'ImageController@imageUploadPost')->name('photos.imageUpload');
 Route::get('/material/disponibles', 'MaterialController@todo');
 Route::get('/prestados/{id}', 'MaterialController@getMatPrestadosxAlumno');
+Route::get('/prestamo/devueltos', 'PrestamoController@onlyClosed');
 Route::get('/persona/count', 'PersonaController@countPerson');
 Route:: get('/persona/all', 'PersonaController@selectPersona');
 Route::get('/material/prestados', 'MaterialController@getMaterialesPrestados');

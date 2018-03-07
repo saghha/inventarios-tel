@@ -35,6 +35,9 @@
               <li class="nav-item">
                 <router-link :to="'/prestamos/vigentes'" class="nav-link" exact><i class="fa fa-book"></i> Ver prestamos</router-link>
               </li>
+              <li class="nav-item">
+                <router-link :to="'/prestamos/devueltos'" class="nav-link" exact><i class="fa fa-book"></i> Prestamos devueltos</router-link>
+              </li>
             </ul>
           </router-link>
         </li>

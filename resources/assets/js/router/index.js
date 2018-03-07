@@ -16,6 +16,7 @@ import Test from '../views/Test';
 import MaterialesDisponibles from '../views/MaterialesDisponibles';
 import MaterialesPrestados from '../views/MaterialesPrestados';
 import Profile from '../views/Profile';
+import PrestamosDevueltos from '../views/PrestamosDevueltos';
 
 // Views - Components
 import Buttons from '../views/components/Buttons';
@@ -121,6 +122,11 @@ export default new Router({
               path: 'vigentes',
               name: 'PrestamosVigentes',
               component: PrestamosVigentes
+            },
+            {
+              path: 'devueltos',
+              name: 'PrestamosDevueltos',
+              component: PrestamosDevueltos
             }
           ]
         },
