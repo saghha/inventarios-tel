@@ -33,10 +33,10 @@
         </span>
         <div slot="dropdown-menu" class="dropdown-menu dropdown-menu-right">
 
-          <div class="dropdown-header text-center"><strong>Settings</strong></div>
-          <a class="dropdown-item" href="#/profile" ><i class="fa fa-user"></i> Profile</a>
-          <a class="dropdown-item" href="#/changepassword"><i class="fa fa-key"></i> Cambiar Contraseña </a>
-          <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Logout</a>
+          <div class="dropdown-header text-center"><strong>Configuraciones</strong></div>
+          <a class="dropdown-item" href="#/profile" ><i class="fa fa-user"></i> Perfil</a>
+          <a class="dropdown-item" href="#/register" v-if="register"><i class="fa fa-key"></i> Registrar nuevo usuario </a>
+          <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Cerrar sesión</a>
         </div>
       </dropdown>
       <!-- <li class="nav-item hidden-md-down">
@@ -60,10 +60,13 @@ export default {
   data(){
     return{
       userName: '',
+      user: {},
+      register: false, 
     }
   },
   created(){
     this.getUserName();
+    this.getUser();
   },
   methods: {
     click () {
@@ -84,6 +87,14 @@ export default {
     getUserName: function(){
       axios.get('/user/name').then((response) => {
         this.userName = response.data;
+      });
+    },
+    getUser: function(){
+      axios.get('/get_user').then((response) =>{
+        this.user = response.data;
+        if(this.user.email == 'maria.ibacache@usm.cl' || this.user.email == 'david@itaxxion.cl'){
+          this.register = true;
+        }
       });
     },
     logout: function(){

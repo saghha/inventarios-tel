@@ -8,7 +8,7 @@
         <div class="form-group row">
           <label class="col-md-3 form-control-label" for="nombre" >Nombre</label>
           <div class="col-md-9">
-              <input class="input form-control" type="text" placeholder="Nombre" v-model="usuario.name">
+              <input class="input form-control" type="text" placeholder="Nombre" v-model="usuario.name" disabled>
           </div>
         </div>
         <div class="form-group row">
@@ -51,10 +51,6 @@
           <button type="button" class="btn btn-success" @click="validateBeforeSubmit">Cambiar</button>
         </div>
       </form>   
-    </div>
-    <div class="card-footer">
-        <button type="submit" class="btn btn-sm btn-primary pull-right" ><i class="fa fa-dot-circle-o"></i> Submit</button>
-        <button type="reset" class="btn btn-sm btn-danger pull-right" ><i class="fa fa-ban"></i> Reset</button>
     </div>
     <modal title="Modal information" small v-model="smallModal" @ok="smallModal = false" effect="fade/zoom" :okText="'Ok'">
         <div slot="modal-header" class="modal-header">
@@ -117,7 +113,8 @@ export default {
       axios.post('/changepass', this.change).then((response)=>{
         this.response = response.data;
         if(this.response.result.type == 'Error'){
-          this.validate_pass = true;
+          this.message = this.response.result.message;
+          this.smallModal = true;
         }
         else{
           this.validate = false;

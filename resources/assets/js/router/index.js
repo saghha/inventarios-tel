@@ -17,6 +17,7 @@ import MaterialesDisponibles from '../views/MaterialesDisponibles';
 import MaterialesPrestados from '../views/MaterialesPrestados';
 import Profile from '../views/Profile';
 import PrestamosDevueltos from '../views/PrestamosDevueltos';
+import Registrar from '../views/Register';
 
 // Views - Components
 import Buttons from '../views/components/Buttons';
@@ -111,6 +112,11 @@ export default new Router({
           path: 'changepassword',
           name: 'ChangePassword',
           component: ChangePassword
+        },
+        {
+          path: 'register',
+          name: 'Registrar',
+          component: Registrar
         },
         {
           path: 'prestamos',

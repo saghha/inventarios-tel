@@ -74,6 +74,43 @@ class DashboardController extends Controller
                 'message' => 'La contraseña fue cambiada correctamente.',
             ]
         ]);
-        //return response()->json($user);
+    }
+
+    public function getAllUsers(){
+        $users = \App\User::all();
+        return $users;
+    }
+
+    public function registerNewUser(Request $request){
+        $input = json_decode($request->getContent(), true);
+        $users = \App\User::where('email', $input['email'])->exists();
+        if(!$users){
+            $validatedData = Validator::make($request->all(),[
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|min:6|confirmed'
+            ]);
+            if($validatedData->fails()){
+                return response()->json([
+                    'result' =>[
+                        'type' => 'Error',
+                        'message' => 'datos ingresados no validos',
+                        'errors' => $validator->errors()
+                    ]
+                ]);
+            }
+            $confirm = \App\User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => bcrypt($input['password']),
+                'api_token' => str_random(60),
+            ]);
+            return response()->json([
+                'result' =>[
+                    'type' => 'Success',
+                    'message' => 'El usuario fue registrado correctamente',
+                ]
+            ]);
+        }
     }
 }
