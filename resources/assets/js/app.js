@@ -21,9 +21,11 @@ import App from './App.vue';
 import router from './router';
 import VeeValidate from 'vee-validate';
 import { rutInputDirective } from 'vue-dni';
+import DataTable from 'v-data-table';
 
 Vue.component('App', require('./App.vue'));
 Vue.use(VeeValidate);
+Vue.use(DataTable);
 Vue.directive('rut', rutInputDirective);
 
 /* eslint-disable no-new */

@@ -164,7 +164,7 @@
     reset: function(){
         this.date = null;
         this.date_esperada = null;
-        this.materiales = {};
+        this.materiales = [];
         this.tempPersona = null;
         this.comentarios = '';
     },

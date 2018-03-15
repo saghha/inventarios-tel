@@ -108,7 +108,7 @@ export default {
         tabla: [],
         name: "",
         page: 1,
-        perpage: 3,
+        perpage: 10,
         totalMateriales: 0,
         newMaterial: {
             nombre: "",

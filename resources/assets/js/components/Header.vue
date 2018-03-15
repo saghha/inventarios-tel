@@ -34,8 +34,8 @@
         <div slot="dropdown-menu" class="dropdown-menu dropdown-menu-right">
 
           <div class="dropdown-header text-center"><strong>Settings</strong></div>
-
-          <a class="dropdown-item" ><i class="fa fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="#/profile" ><i class="fa fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="#/changepassword"><i class="fa fa-key"></i> Cambiar Contraseña </a>
           <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Logout</a>
         </div>
       </dropdown>

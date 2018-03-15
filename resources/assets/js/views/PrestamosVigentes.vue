@@ -31,10 +31,16 @@
                 <a data-toggle="tooltip" data-placement="top" title class="btn btn-secondary btn-xs " data-original-title="Editar"
                 @click="largeModal=true;loadData(prestamo.id)"><i class="fa fa-edit"></i></a>
               </td>
-              
             </tr>
           </tbody>
         </table>
+      </div>
+      <pagination :records="totalPrestamos" :per-page="perpage" @paginate="setPage"></pagination>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <data-table :data="gridData" :columns-to-display="gridColumns">
+        </data-table>
       </div>
       <pagination :records="totalPrestamos" :per-page="perpage" @paginate="setPage"></pagination>
     </div>
@@ -125,7 +131,7 @@ export default {
   components:{
     modal,
     Datepicker,
-    Pagination
+    Pagination,
   },
   data(){
     return{
@@ -134,7 +140,7 @@ export default {
       tabla: [],
       page: 1,
       totalPrestamos: 0,
-      perpage: 2,
+      perpage: 10,
       name: "",
       message: "",
       response: null,
@@ -160,7 +166,21 @@ export default {
       },
       disabled_devolucion:{
         to: null
-      }
+      },
+      gridColumns: ['name', 'power'],
+    gridData: [{
+      name: 'Chuck Norris',
+      power: Infinity
+    }, {
+      name: 'Bruce Lee',
+      power: 9000
+    }, {
+      name: 'Jackie Chan',
+      power: 7000
+    }, {
+      name: 'Jet Li',
+      power: 8000
+    }]
     }
   },
   created(){

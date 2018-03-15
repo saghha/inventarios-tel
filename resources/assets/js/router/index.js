@@ -26,7 +26,8 @@ import Forms from '../views/components/Forms';
 import Modals from '../views/components/Modals';
 import Switches from '../views/components/Switches';
 import Tables from '../views/components/Tables';
-//import GoodTables from '../views/components/GoodTables'
+import ChangePassword from '../views/ChangePassword';
+import GoodTables from '../views/components/GoodTables'
 
 
 // Views - Icons
@@ -105,6 +106,11 @@ export default new Router({
           path: 'test',
           name: 'Test',
           component: Test
+        },
+        {
+          path: 'changepassword',
+          name: 'ChangePassword',
+          component: ChangePassword
         },
         {
           path: 'prestamos',

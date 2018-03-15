@@ -39,7 +39,7 @@
       <pagination :records="totalPrestamos" :per-page="perpage" @paginate="setPage"></pagination>
     </div>
   </div>
-  <modal title="Modal title" large v-model="largeModal" @ok="largeModal = false" effect="fade/zoom" :callback="validateBeforeSubmit">
+  <modal title="Modal title" large v-model="largeModal" @ok="largeModal = false" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
         <h4 class="modal-title">Información del prestamo de material</h4>
       </div>
@@ -134,7 +134,7 @@ export default {
       tabla: [],
       page: 1,
       totalPrestamos: 0,
-      perpage: 2,
+      perpage: 10,
       name: "",
       message: "",
       response: null,
@@ -200,7 +200,7 @@ export default {
       
     },
     loadData(index){
-      this.date_devolucion = null;
+      //this.date_devolucion = null;
       //this.newPrestamo = this.prestamos[index];
       var parent = this;
       this.prestamos.forEach(function(element){
@@ -213,12 +213,15 @@ export default {
       let fecha = this.newPrestamo.fecha_prestamo.split(" ");
       let data = fecha[0].split("-");
       let fecha_esperada = this.newPrestamo.fecha_esperada_devolucion.split(" ");
+      let fecha_devolucion = this.newPrestamo.fecha_devolucion.split(" ");
       let data_esperada = fecha_esperada[0].split("-");
+      let data_devolucion  = fecha_devolucion[0].split("-");
       this.date = new Date(data[0],(parseInt(data[1])-1),data[2]);
       this.date_esperada = new Date(data_esperada[0],(parseInt(data_esperada[1])-1),data_esperada[2]);
       this.disabled_prestamo.to = this.date;
       this.disabled_prestamo.from = this.date;
       this.disabled_esperada.to = this.date_esperada;
+      this.date_devolucion = new Date(data_devolucion[0],(parseInt(data_devolucion[1])-1),data_devolucion[2]);
     },
     validateBeforeSubmit: function(){
       if(this.date_devolucion != null){

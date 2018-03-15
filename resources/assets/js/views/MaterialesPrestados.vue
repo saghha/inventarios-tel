@@ -134,7 +134,7 @@ export default {
               descripcion: '',
               personas:[]
           },
-          perpage: 2,
+          perpage: 10,
           largeModal: false,
       }
   },

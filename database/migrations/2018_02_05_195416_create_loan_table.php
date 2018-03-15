@@ -16,7 +16,7 @@ class CreateLoanTable extends Migration
         Schema::create('prestamos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('id_persona');
+            $table->integer('id_persona')->unsigned();
             $table->date('fecha_prestamo');
             $table->date('fecha_devolucion')->nullable();
             $table->date('fecha_esperada_devolucion');
