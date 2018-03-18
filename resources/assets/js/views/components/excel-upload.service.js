@@ -1,6 +1,7 @@
 import * as axios from 'axios';
 
 const BASE_URL = 'http://cap.local';
+//const BASE_URL = 'http://10.7.101.71'; //ip VPS telemática
 
 function upload(formData) {
     const url = `${BASE_URL}/excel/upload`;
