@@ -37,13 +37,6 @@
       </div>
       <pagination :records="totalPrestamos" :per-page="perpage" @paginate="setPage"></pagination>
     </div>
-    <div class="card-block">
-      <div class="table-responsive">
-        <data-table :data="gridData" :columns-to-display="gridColumns">
-        </data-table>
-      </div>
-      <pagination :records="totalPrestamos" :per-page="perpage" @paginate="setPage"></pagination>
-    </div>
   </div>
   <modal title="Modal title" large v-model="largeModal" @ok="largeModal = false" effect="fade/zoom" :callback="validateBeforeSubmit">
       <div slot="modal-header" class="modal-header">
